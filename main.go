@@ -13,7 +13,9 @@ func main() {
 
 	mux := http.NewServeMux()
 
-	fmt.Printf("Server running on port %s", port)
+	mux.HandleFunc("/", arithmeticHandler)
+
+	fmt.Printf("Server running on port %s\n", port)
 	if err := http.ListenAndServe(":"+port, mux); err != nil {
 		log.Fatal(err)
 	}
