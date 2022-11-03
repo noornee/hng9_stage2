@@ -1,6 +1,9 @@
 package main
 
-import "net/http"
+import (
+	"encoding/json"
+	"net/http"
+)
 
 type Question struct {
 	OperationType string `json:"operation_type"`
@@ -21,5 +24,27 @@ func arithmeticHandler(w http.ResponseWriter, r *http.Request) {
 		http.Error(w, "Method Not Allowed", http.StatusMethodNotAllowed)
 		return
 	}
+
+	var question Question
+
+	err := json.NewDecoder(r.Body).Decode(&question)
+	if err != nil {
+		http.Error(w, err.Error(), http.StatusBadRequest)
+		return
+	}
+
+	result, operation_type := check(question)
+
+	res := Response{
+		SlackUsername: "noornee",
+		Result:        result,
+		OperationType: operation_type,
+	}
+
+	resByte, _ := json.Marshal(res)
+
+	w.Header().Set("Content-Type", "application/json")
+	w.Header().Set("Access-Control-Allow-Origin", "*")
+	w.Write(resByte)
 
 }
