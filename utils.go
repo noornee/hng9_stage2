@@ -16,14 +16,14 @@ func check(data Question) (int, string) {
 	}
 
 	for _, val := range math["addition"] {
-		if strings.Contains(data.OperationType, val) {
+		if strings.Contains(strings.ToLower(data.OperationType), val) {
 			total = data.X + data.Y
 			operation_type = "addition"
 		}
 	}
 
 	for _, val := range math["multiplication"] {
-		if strings.Contains(data.OperationType, val) {
+		if strings.Contains(strings.ToLower(data.OperationType), val) {
 			total = data.X * data.Y
 			operation_type = "multiplication"
 
@@ -31,7 +31,7 @@ func check(data Question) (int, string) {
 	}
 
 	for _, val := range math["subtraction"] {
-		if strings.Contains(data.OperationType, val) {
+		if strings.Contains(strings.ToLower(data.OperationType), val) {
 			total = data.X - data.Y
 			operation_type = "subtraction"
 
