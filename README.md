@@ -31,6 +31,7 @@ the server would run on port `:8000`
 ` 
 
 expected response:
+
 `
 {
     "operation_type": "multiplication",
@@ -38,3 +39,6 @@ expected response:
     "slackUsername": "noornee"
 }
 `
+
+# visual 
+![Screenshot_20221105-093204](https://user-images.githubusercontent.com/71889751/200111200-42fe0102-28f2-4a60-8d8f-beeb24def2fc.png)
